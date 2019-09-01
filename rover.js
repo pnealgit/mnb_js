@@ -1,11 +1,9 @@
-var angles = [];
 var straight_count = 0;
 var angle_count_for_fitness = 4;
 
 function make_rover() {
     "use strict";
     ROVER.Xpos = WIDTH/2 + getRandomInt(-20,20);
-;
     ROVER.Ypos = HEIGHT/5 + getRandomInt(-5,5);
     ROVER.Velocity = 1;
     ROVER.Angle_index = getRandomInt(0,3);
@@ -47,13 +45,14 @@ function signal_new_rover() {
 }
 
 function check_for_dead() {
+    "use strict";
     ROVER.Time_to_live--;
     if (ROVER.Time_to_live <= 0) {
         console.log("DEAD TTL",TRY,ROVER.FITNESS);
         ROVER.Dead = true;
     }
 
-    wall_status = check_borders(ROVER.Xpos,ROVER.Ypos,1);
+    var wall_status = check_borders(ROVER.Xpos,ROVER.Ypos,1);
     if (wall_status > 0) {
        console.log("DEAD WALL",TRY,ROVER.FITNESS);
        ROVER.Dead = true;
@@ -63,10 +62,10 @@ function check_for_dead() {
 function move_rover() {
      "use strict";
      var wall = -99;
-     var dx = ROVER.Velocity * ANGLES_DX[ROVER.Angle_index];
-     var dy = ROVER.Velocity * ANGLES_DY[ROVER.Angle_index];
-     ROVER.Xpos += dx;
-     ROVER.Ypos += dy;
+     //var dx = ROVER.Velocity * ANGLES_DX[ROVER.Angle_index];
+     //var dy = ROVER.Velocity * ANGLES_DY[ROVER.Angle_index];
+     ROVER.Xpos += (ROVER.Velocity * ANGLES_DX[ROVER.Angle_index]);
+     ROVER.Ypos += (ROVER.Velocity * ANGLES_DY[ROVER.Angle_index]);
      wall = check_borders(ROVER.Xpos,ROVER.Ypos,1);
      if (wall > 0 ) {
         ROVER.Dead = true;
