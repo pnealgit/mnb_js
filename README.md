@@ -1,6 +1,10 @@
 # mnb_js
 Simple Markov Network Brain with Javascript
 
+PLEASE NOTE: 
+
+This is not a "framework". This is a HTML5/Javascript program.
+
 Background links:
 My own take on networked brains ala Chris Adami's and
 his teams ideas.
@@ -11,8 +15,13 @@ See:
 
  Another good description (http://devosoft.org/a-quick-introduction-to-markov-network-brains/)
 
- And Jefferey Cave's really neat implementation
+ Jefferey Cave's really neat implementation
  (https://medium.com/@jefferey.cave/fun-with-markov-network-brains-8041c35ca883)
+
+ Arend Hintze's "Markov Brains: A Technical Introduction" is also great. (https://arxiv.org/pdf/1709.05601v1.pdf)
+
+
+
 
 
 Evolution:
