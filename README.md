@@ -67,3 +67,26 @@ not be done on the original "brain" in the POPULATION array.
    a true "GATE" object. So I had to rewrite the "NEURONS" item as a
    2 dimensional array. Sigh.
 
+Gates:
+
+1. I use a simple gate structure.
+    - 2 inputs 
+    - gate type
+    - 2 outputs
+
+2. Gate types are:
+    - OR
+    - AND
+    - XOR
+    - NOR
+    - NAND
+    - XNOR
+
+3. I do not use probabilistic, not,neuron,learning gates.
+
+4. The truth table for each gate is a 2d matrix indexed by the input values
+
+5. The values for the inputs are indexed on the INPUT_STATE.
+
+6. The values for the outputs are indexed on the OUTPUT_STATE.
+
