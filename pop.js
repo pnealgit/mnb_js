@@ -10,18 +10,32 @@ var NUM_GATE_TYPES = 6;
 function make_neuron(){
     "use strict"; 
     //only 5 things really needed assuming 2 inputs, 2 outputs and a gate type
+    //nope - throw out gate_type
     var neuron = [0,0,0,0,0]
-    //gate type
-    neuron[0] = getRandomInt(0,NUM_GATE_TYPES);
     //inputs
+    neuron[0] = getRandomInt(0,STATE_SIZE);
     neuron[1] = getRandomInt(0,STATE_SIZE);
-    neuron[2] = getRandomInt(0,STATE_SIZE);
     //outputs
+    neuron[2] = getRandomInt(INPS_SIZE,STATE_SIZE);
     neuron[3] = getRandomInt(INPS_SIZE,STATE_SIZE);
-    neuron[4] = getRandomInt(INPS_SIZE,STATE_SIZE);
+    var tt = make_truth_table();
+    neuron[4] = tt;
     return neuron 
-}
 
+}
+function make_truth_table() {
+    "use strict";
+    var tt = [];
+    var row = [];
+    for(var i = 0;i<2;i++) {
+       row = [];
+       for(var j=0;j<2;j++) {
+           row[j] = getRandomInt(0,2);
+       }
+       tt.push(row);
+    }
+    return tt;
+}
 function make_brain() { 
    "use strict";
    var b = {};
@@ -43,7 +57,8 @@ function make_population() {
        var stuff = make_brain();
        POPULATION.push(stuff);
     }
-
+    console.log("NEW POPULATION");
+    console.log(POPULATION);
     get_new_brain(); //start things off
 }
 
@@ -77,6 +92,7 @@ function cross_over(){
     var cb = JSON.parse(JSON.stringify(POPULATION[b1_index]));
     var n_step = getRandomInt(0,NUM_NEURONS);
     BRAIN.NEURONS[n_step] = cb.NEURONS[n_step];
+
     n_step = getRandomInt(0,NUM_NEURONS);
     BRAIN.NEURONS[n_step] = cb.NEURONS[n_step];
 }
@@ -126,22 +142,23 @@ function mutate(){
         rnum = getRandomInt(0,NUM_NEURONS)
         snum = getRandomInt(0,NUM_GATE_TYPES)
         BRAIN.NEURONS[rnum][0] = snum
-
+        //inputs
+        rnum = getRandomInt(0,NUM_NEURONS)
+        snum = getRandomInt(0,STATE_SIZE)
+        BRAIN.NEURONS[rnum][0] = snum
         rnum = getRandomInt(0,NUM_NEURONS)
         snum = getRandomInt(0,STATE_SIZE)
         BRAIN.NEURONS[rnum][1] = snum
-        rnum = getRandomInt(0,NUM_NEURONS)
-        snum = getRandomInt(0,STATE_SIZE)
-        BRAIN.NEURONS[rnum][2] = snum
 
         //mutate output connections
         //don't want to write over input in IN_STATE
         rnum = getRandomInt(0,NUM_NEURONS)
         snum = getRandomInt(INPS_SIZE,STATE_SIZE)
-        BRAIN.NEURONS[rnum][3] = snum
+        BRAIN.NEURONS[rnum][2] = snum
         rnum = getRandomInt(0,NUM_NEURONS)
         snum = getRandomInt(INPS_SIZE,STATE_SIZE)
-        BRAIN.NEURONS[rnum][4] = snum
+        BRAIN.NEURONS[rnum][3] = snum
+
+        //no tt mutations yet
     }
-    //mutate a gate type
 }

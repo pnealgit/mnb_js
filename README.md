@@ -21,9 +21,6 @@ See:
  Arend Hintze's "Markov Brains: A Technical Introduction" is also great. (https://arxiv.org/pdf/1709.05601v1.pdf)
 
 
-
-
-
 Evolution:
 
 1. Generate a population of "BRAINS".
@@ -66,7 +63,7 @@ Overview:
 Deep Copy Hassles:
 
 1. I had to do deep copy on the "genome" because mutation and crossover should
-not be done on the original "brain" in the POPULATION array.
+not be done on the original too deep object oriented "brain" in the POPULATION array.
 
 2. So I did the JSON trick
     - BRAIN = JSON.parse(JSON.stringify(POPULATION[0]));
@@ -80,22 +77,14 @@ Gates:
 
 1. I use a simple gate structure.
     - 2 inputs 
-    - gate type
     - 2 outputs
+    - a 2x2 matrix of 0 or 1 randomly generated for the truth table
 
-2. Gate types are:
-    - OR
-    - AND
-    - XOR
-    - NOR
-    - NAND
-    - XNOR
+2. I do not use probabilistic, not,neuron,or learning gates.
 
-3. I do not use probabilistic, not,neuron,learning gates.
+3. The truth table for each gate is a 2d matrix indexed by the input values
 
-4. The truth table for each gate is a 2d matrix indexed by the input values
+4. The values for the inputs are the indexes into the INPUT_STATE.
 
-5. The values for the inputs are indexed on the INPUT_STATE.
-
-6. The values for the outputs are indexed on the OUTPUT_STATE.
+5. The values for the outputs are the indexes into the OUTPUT_STATE.
 

@@ -3,14 +3,6 @@
  
 //essentially sweep might be a kind of finite state machine (fsm)
 
-var ALL_TABLES = [];
-ALL_TABLES.push([[0,1],[1,1]]); //or
-ALL_TABLES.push([[0,0],[0,1]]); //and
-ALL_TABLES.push([[0,1],[1,0]]); //xor
-ALL_TABLES.push([[1,0],[0,0]]); //nor
-ALL_TABLES.push([[1,1],[1,0]]); //nand
-ALL_TABLES.push([[1,0],[0,1]]); //xnor
-
 IN_STATE = new Array(STATE_SIZE).fill(0);
 OUT_STATE = new Array(STATE_SIZE).fill(0);
 
@@ -60,7 +52,8 @@ function sweep(data_in) {
     var out;
     var output;
     for(var j= 0;j<STATE_SIZE;j++) {
-       IN_STATE[j]  = 0;
+       //IN_STATE[j]  = 0;
+       IN_STATE[j]  = OUT_STATE[j];
        
     }
 
@@ -74,18 +67,18 @@ function sweep(data_in) {
 
     //big loop
     for(var ni=0;ni<NUM_NEURONS;ni++) {
-        gate_type = BRAIN.NEURONS[ni][0];
-        val1 = IN_STATE[BRAIN.NEURONS[ni][1]]
-        val2 = IN_STATE[BRAIN.NEURONS[ni][2]]
+        val1 = IN_STATE[BRAIN.NEURONS[ni][0]]
+        val2 = IN_STATE[BRAIN.NEURONS[ni][1]]
         out = -9
-        out =  ALL_TABLES[gate_type][val1][val2]
+        var tt = BRAIN.NEURONS[ni][4];
+        out =  tt[val1][val2]
        
         if (out == 1 ) {
-            OUT_STATE[BRAIN.NEURONS[ni][3]] = out;
+            OUT_STATE[BRAIN.NEURONS[ni][2]] = out;
         }
 
         if (out == 1 ) {
-            OUT_STATE[BRAIN.NEURONS[ni][4]] = out;
+            OUT_STATE[BRAIN.NEURONS[ni][3]] = out;
         }
     } //end of loop on NEURONS
     //end of sweep
