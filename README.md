@@ -62,7 +62,7 @@ Overview:
 
 Deep Copy Hassles:
 
-1. I had to do deep copy on the "genome" because mutation and crossover should
+1. I had to do deep copy on the "BRAIN" because mutation and crossover should
 not be done on the original too deep object oriented "brain" in the POPULATION array.
 
 2. So I did the JSON trick
@@ -76,15 +76,16 @@ not be done on the original too deep object oriented "brain" in the POPULATION a
 Gates:
 
 1. I use a simple gate structure.
-    - 2 inputs 
-    - 2 outputs
+    - 2 input indexes 
+    - 2 output indexes
     - a 2x2 matrix of 0 or 1 randomly generated for the truth table
 
 2. I do not use probabilistic, not,neuron,or learning gates.
 
 3. The truth table for each gate is a 2d matrix indexed by the input values
 
-4. The values for the inputs are the indexes into the INPUT_STATE.
+4. The values for each input index points to the binary value at INPUT_STATE[input_index]
 
-5. The values for the outputs are the indexes into the OUTPUT_STATE.
+5. The values for each output index points to the OUT_STATE[output_index] where the result of the truth table will be written.
+
 

@@ -5,8 +5,8 @@ var STATE_SIZE = 40;
 BRAIN = {};
 POPULATION = [];
 var ID_COUNTER = 0;
-var NUM_GATE_TYPES = 6;
- 
+MUTATION_RATE = .2; 
+MUTATION_RATE = .1; 
 function make_neuron(){
     "use strict"; 
     //only 5 things really needed assuming 2 inputs, 2 outputs and a gate type
@@ -87,13 +87,10 @@ function get_new_brain() {
 
 function cross_over(){
     "use strict";
-    //crossover
+    //crossover - only do once
     var b1_index = getRandomInt(1,5);
     var cb = JSON.parse(JSON.stringify(POPULATION[b1_index]));
     var n_step = getRandomInt(0,NUM_NEURONS);
-    BRAIN.NEURONS[n_step] = cb.NEURONS[n_step];
-
-    n_step = getRandomInt(0,NUM_NEURONS);
     BRAIN.NEURONS[n_step] = cb.NEURONS[n_step];
 }
      
@@ -133,29 +130,20 @@ function update_population(fitness){
 
 function mutate(){
     "use strict";
-    //gate_type goes from 0-NUM_GATE_TYPES so on different scale.
     var s = BRAIN.NEURONS.length;
     var rnum;
     var snum;
-    var num_mutations = Math.round(.2*NUM_NEURONS);
+    var num_mutations = Math.round(MUTATION_RATE*NUM_NEURONS);
     for(var i=0;i<num_mutations;i++) {
         rnum = getRandomInt(0,NUM_NEURONS)
-        snum = getRandomInt(0,NUM_GATE_TYPES)
-        BRAIN.NEURONS[rnum][0] = snum
         //inputs
-        rnum = getRandomInt(0,NUM_NEURONS)
         snum = getRandomInt(0,STATE_SIZE)
         BRAIN.NEURONS[rnum][0] = snum
-        rnum = getRandomInt(0,NUM_NEURONS)
         snum = getRandomInt(0,STATE_SIZE)
         BRAIN.NEURONS[rnum][1] = snum
-
-        //mutate output connections
-        //don't want to write over input in IN_STATE
-        rnum = getRandomInt(0,NUM_NEURONS)
+        //outputs
         snum = getRandomInt(INPS_SIZE,STATE_SIZE)
         BRAIN.NEURONS[rnum][2] = snum
-        rnum = getRandomInt(0,NUM_NEURONS)
         snum = getRandomInt(INPS_SIZE,STATE_SIZE)
         BRAIN.NEURONS[rnum][3] = snum
 
