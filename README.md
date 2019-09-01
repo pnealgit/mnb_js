@@ -37,6 +37,8 @@ Deep Copy Hassles:
 1. I had to do deep copy on the "genome" because mutation and crossover should
 not be done on the original "brain" in the POPULATION array.
 
-2. So I did the JSON trick:
-    A. BRAIN = JSON.parse(JSON.stringify(POPULATION[0]));
-    B. POPULATION[POP_SIZE-1] = JSON.parse(JSON.stringify(BRAIN))
+2. So I did the JSON trick
+    - BRAIN = JSON.parse(JSON.stringify(POPULATION[0]));
+    - POPULATION[POP_SIZE-1] = JSON.parse(JSON.stringify(BRAIN))
+
+
