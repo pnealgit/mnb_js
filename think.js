@@ -14,8 +14,6 @@ ALL_TABLES.push([[1,0],[0,1]]); //xnor
 IN_STATE = new Array(STATE_SIZE).fill(0);
 OUT_STATE = new Array(STATE_SIZE).fill(0);
 
-var MAX_SPIKE_COUNT = 20;
-var SAMPLE_POINT = 15 ;
 var ACCUMULATORS = [0,0,0];
 
 function think(payload) {
@@ -38,10 +36,7 @@ function think(payload) {
          ix = ak % modo;
          ACCUMULATORS[ix] = ACCUMULATORS[ix] + OUT_STATE[INPS_SIZE+ak]
     } 
-    /*for (var ak=INPS_SIZE;ak<STATE_SIZE;ak++) {
-         ACCUMULATORS[ix] = ACCUMULATORS[ix] + OUT_STATE[ak]
-    }
-     */       
+    
     //console.log("ACC: ",ACCUMULATORS);
     for(var jj=0;jj<ACCUMULATORS.length;jj++) {
         if (ACCUMULATORS[jj]  > max_value) {
@@ -49,6 +44,7 @@ function think(payload) {
             max_index = jj;
         }
     } 
+    //if you don't know what you are doing, go straight
     if (ACCUMULATORS[0] == ACCUMULATORS[1] && ACCUMULATORS[1]  == ACCUMULATORS[2]) {
         max_index = 1;
     }
@@ -58,14 +54,12 @@ function think(payload) {
 
 function sweep(data_in) {
     "use strict"; 
-    var knt = 0
     var gate_type = 0;
     var val1;
     var val2;
     var out;
     var output;
     for(var j= 0;j<STATE_SIZE;j++) {
-       //IN_STATE[j]  = OUT_STATE[j];
        IN_STATE[j]  = 0;
        
     }
@@ -79,7 +73,6 @@ function sweep(data_in) {
     }
 
     //big loop
-    knt = 0
     for(var ni=0;ni<NUM_NEURONS;ni++) {
         gate_type = BRAIN.NEURONS[ni][0];
         val1 = IN_STATE[BRAIN.NEURONS[ni][1]]
