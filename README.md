@@ -41,4 +41,7 @@ not be done on the original "brain" in the POPULATION array.
     - BRAIN = JSON.parse(JSON.stringify(POPULATION[0]));
     - POPULATION[POP_SIZE-1] = JSON.parse(JSON.stringify(BRAIN))
 
+3. HOWEVER !!! For some reason the JSON trick wouldn't do 
+   a true "GATE" object. So I had to rewrite the "NEURONS" item as a
+   2 dimensional array. Sigh.
 
