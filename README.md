@@ -15,6 +15,28 @@ See:
  (https://medium.com/@jefferey.cave/fun-with-markov-network-brains-8041c35ca883)
 
 
+Evolution:
+
+1. Generate a population of "BRAINS".
+2. Evaluate the fitness of each of the original BRAINS
+3. Sort the population descending based on fitness
+4. For the best BRAIN (POPULATION[0] after sort)
+    - Crossover with a randomly chosen BRAIN from the less fit.
+    - Mutate gates depending on mutation rate
+5. Evaluate the fitness of the candidata brain 
+6. If candidate brain is better than the worst BRAIN, 
+   replace worst Brain with candidate brain
+7. Go to 4 above.
+
+The Goal:
+
+1. Have a 'rover' go around in a big circle.
+2. If the rover "body" touches a wall or a blue square it is dead.
+3. The rover accumulates fitness depending on how many times in a row
+   it goes straight.
+4. The rover has a "Time_to_live". 
+5. The rover has a 'BRAIN'.
+ 
 
 How to Run:
 1. Download the repository one way or another.
