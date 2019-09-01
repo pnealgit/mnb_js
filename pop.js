@@ -1,12 +1,11 @@
 var POP_SIZE = 10 ;
 var INPS_SIZE = 3;
-var NUM_NEURONS = 16;
-var STATE_SIZE = 40;
+var NUM_NEURONS = 32;
+var STATE_SIZE = 64;
 BRAIN = {};
 POPULATION = [];
 var ID_COUNTER = 0;
 MUTATION_RATE = .2; 
-MUTATION_RATE = .1; 
 function make_neuron(){
     "use strict"; 
     //only 5 things really needed assuming 2 inputs, 2 outputs and a gate type
@@ -88,8 +87,12 @@ function get_new_brain() {
 function cross_over(){
     "use strict";
     //crossover - only do once
-    var b1_index = getRandomInt(1,5);
+    var b1_index = getRandomInt(1,4);
     var cb = JSON.parse(JSON.stringify(POPULATION[b1_index]));
+    var n_step = getRandomInt(0,NUM_NEURONS);
+    BRAIN.NEURONS[n_step] = cb.NEURONS[n_step];
+    //do 2 crossovers
+    b1_index = getRandomInt(1,4);
     var n_step = getRandomInt(0,NUM_NEURONS);
     BRAIN.NEURONS[n_step] = cb.NEURONS[n_step];
 }

@@ -1,5 +1,5 @@
 var straight_count = 0;
-var angle_count_for_fitness = 4;
+var angle_count_for_fitness = 5;
 
 function make_rover() {
     "use strict";
@@ -32,10 +32,14 @@ function do_fitness(choice) {
        straight_count++;
    }
 
-   if (choice != 1 && straight_count > 3 ) {
-       ROVER.FITNESS = ROVER.FITNESS + straight_count;
+   if ( straight_count >= angle_count_for_fitness ) {
+       ROVER.FITNESS = ROVER.FITNESS + 1;
        straight_count = 0;
    }
+   if (choice != 1) {
+       straight_count = 0;
+   }
+
 }
 function signal_new_rover() {
     "use strict";

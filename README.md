@@ -48,7 +48,7 @@ How to Run:
 1. Download the repository one way or another.
 2. Open a Chrome browser (maybe others will work)
 3. Point it at "file:///your fully qualified directory name/index.html -- I use file:///Users/pneal/mnb_js/index.html
-4. You should see a red whirling rover in a field of grey with blue boxes.
+4. You should see a red whirling rover in a field of white with blue boxes.
 5. Turn on View->Developer->Javascript Console for more info
 
 Overview:
