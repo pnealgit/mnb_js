@@ -6,7 +6,6 @@ BRAIN = {};
 POPULATION = [];
 var ID_COUNTER = 0;
 var NUM_GATE_TYPES = 6;
-var FPGA_STRING;
  
 function make_neuron(){
     "use strict"; 
@@ -67,11 +66,11 @@ function get_new_brain() {
    BRAIN.Fitness = 0;
 
    ID_COUNTER+= 1;
-   xc();
+   cross_over();
    mutate();
 }
 
-function xc(){
+function cross_over(){
     "use strict";
     //crossover
     var b1_index = getRandomInt(1,5);
