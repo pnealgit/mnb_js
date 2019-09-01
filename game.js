@@ -1,5 +1,3 @@
-var ws
-var pause = false
 var WIDTH = 320
 var HEIGHT = 240
 var sensors = []
@@ -9,9 +7,7 @@ var ANGLES_DX = [1,1,0,-1,-1,-1,0,1];
 var ANGLES_DY = [0,1,1,1,0,-1,-1,-1];
 var NUM_ANGLES = 8;
 var NUM_SENSORS = 3 
-
 var Time_to_live = 1000;
-var knt = 0;
 var TRY = 0;
 
 function getRandomInt(min,max) {
@@ -34,7 +30,6 @@ function startGame() {
         make_rectangle()
         make_population();
         make_rover()
-        results = "";
         make_table();
         myGameArea.start();
 }
