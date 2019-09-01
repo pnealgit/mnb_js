@@ -18,7 +18,7 @@ function getRandomFloat(min,max) {
 }
 
 function make_table() {
-    results = "";
+    results = "<tr><td>FITNESS</td></tr>";
     for(i=0;i<POP_SIZE;i++) {
         results = results + "<tr><td>" + POPULATION[i].Fitness + "</td></tr>";
     }
