@@ -37,9 +37,10 @@ function think(payload) {
         }
     } 
     //if you don't know what you are doing, go straight
-    if (ACCUMULATORS[0] == ACCUMULATORS[1] && ACCUMULATORS[1]  == ACCUMULATORS[2]) {
+    /*if (ACCUMULATORS[0] == ACCUMULATORS[1] && ACCUMULATORS[1]  == ACCUMULATORS[2]) {
         max_index = 1;
     }
+*/
 
     return max_index
 }
