@@ -87,7 +87,7 @@ function get_new_brain() {
 function cross_over(){
     "use strict";
     //crossover - only do once
-    var b1_index = getRandomInt(1,4);
+    var b1_index = getRandomInt(1,POP_SIZE);
     var cb = JSON.parse(JSON.stringify(POPULATION[b1_index]));
     var n_step = getRandomInt(0,NUM_NEURONS);
     BRAIN.NEURONS[n_step] = cb.NEURONS[n_step];
@@ -112,7 +112,6 @@ function update_population(fitness){
    POPULATION = POPULATION.sort((a, b) => Number(b.Fitness) - Number(a.Fitness));
    var Fmin = POPULATION[POP_SIZE-1].Fitness;
    if (Fmin <= BRAIN.Fitness) {
-       console.log("FOUND BETTER OR EQUAL");
        POPULATION[POP_SIZE-1] = JSON.parse(JSON.stringify(BRAIN));
    }
    var Fmax = 0
@@ -149,7 +148,6 @@ function mutate(){
         BRAIN.NEURONS[rnum][2] = snum
         snum = getRandomInt(INPS_SIZE,STATE_SIZE)
         BRAIN.NEURONS[rnum][3] = snum
-
-        //no tt mutations yet
+        BRAIN.NEURONS[rnum][4] = make_truth_table();
     }
 }
